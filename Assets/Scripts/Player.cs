@@ -38,4 +38,8 @@ public class Player : MonoBehaviour {
     public void OnJump(bool isJumping) {
         animator.SetBool("Jumping", isJumping);
     }
+
+    public void onClick(int button) {
+        Debug.Log("Player Click Method.");
+    }
 }

@@ -7,7 +7,9 @@ public class MyCharacterController : MonoBehaviour {
     private float jumpTime = 3f; //Seconds
     private float jumpCooldown = 1f; //Seconds
     private bool isJumping = false;
-    private Rigidbody2D rigidbody2D;
+    private new Rigidbody2D rigidbody2D;
+    private Quaternion rotation = new Quaternion();
+    private Vector3 fixedCrosshair = new Vector3();
 
     private Vector2 reference_velocity = Vector2.zero;
     [Range(0, 0.3f)] [SerializeField] private float movement_smoothing = 0.05f;
@@ -15,12 +17,20 @@ public class MyCharacterController : MonoBehaviour {
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
     public BoolEvent onJumpEvent; //For when the player jumps up from the land
+    public Crosshair crosshair; //The crosshair for the player
 
     private void Awake() {
         rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (onJumpEvent == null)
             onJumpEvent = new BoolEvent();
+    }
+
+    private void FixedUpdate() {
+        fixedCrosshair = crosshair.transform.position;
+        //fixedCrosshair.z = 50.0f;
+        rotation.SetFromToRotation(transform.position, fixedCrosshair);
+        transform.rotation = rotation;
     }
 
     public IEnumerator Move(Vector2 move, bool jump) {
