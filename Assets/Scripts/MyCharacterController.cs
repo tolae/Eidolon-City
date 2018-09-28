@@ -8,8 +8,8 @@ public class MyCharacterController : MonoBehaviour {
     private float jumpCooldown = 1f; //Seconds
     private bool isJumping = false;
     private new Rigidbody2D rigidbody2D;
-    private Quaternion rotation = new Quaternion();
-    private Vector3 fixedCrosshair = new Vector3();
+    private Vector3 toCrosshair = new Vector3();
+    private Quaternion targetRotation = new Quaternion();
 
     private Vector2 reference_velocity = Vector2.zero;
     [Range(0, 0.3f)] [SerializeField] private float movement_smoothing = 0.05f;
@@ -27,10 +27,13 @@ public class MyCharacterController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        fixedCrosshair = crosshair.transform.position;
-        //fixedCrosshair.z = 50.0f;
-        rotation.SetFromToRotation(transform.position, fixedCrosshair);
-        transform.rotation = rotation;
+        targetRotation = Quaternion.LookRotation(crosshair.transform.position - transform.position);
+        targetRotation.x = 0;
+        targetRotation.y = 0;
+
+        Debug.DrawLine(transform.position, crosshair.transform.position, Color.black, Time.deltaTime);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1);
     }
 
     public IEnumerator Move(Vector2 move, bool jump) {
@@ -48,7 +51,9 @@ public class MyCharacterController : MonoBehaviour {
         if (jump && !isJumping) {
             isJumping = true;
             onJumpEvent.Invoke(isJumping);
+            Debug.Log("Jump Started");
             yield return new WaitForSeconds(jumpTime);
+            Debug.Log("Jump Finished");
             isJumping = false;
             onJumpEvent.Invoke(isJumping);
             yield return new WaitForSeconds(jumpCooldown);

@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Class holds all the information for the Player.
+ */
 public class Player : MonoBehaviour {
 
     /*Player Fields*/
     [SerializeField] private float health = 5; //The number of hitpoints a player can take before death
     [SerializeField] private float speed = 10;  //How fast the player moves
     [SerializeField] private float jumpSpeed = 15; //How fast the player moves while jumping
-    private Vector2 movement; //The directional of where the player wants to move
-    private bool jump; //If the character hit to jump or not
+    private Vector2 movement = new Vector2(); //The directional of where the player wants to move
+    private bool jump = false; //If the character hit to jump or not
 
-    public MyCharacterController controller;
-    public Animator animator;
+    public MyCharacterController controller; //Tells the Player what to do when things happen
+    public Animator animator; //Selects which animation to be playing at what time
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +27,8 @@ public class Player : MonoBehaviour {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        jump = Input.GetKeyDown(KeyCode.Space);
+        if (!jump)
+            jump = Input.GetKeyDown(KeyCode.Space);
 
         animator.SetFloat("Speed", movement.magnitude);
 
@@ -36,10 +40,14 @@ public class Player : MonoBehaviour {
     }
 
     public void OnJump(bool isJumping) {
-        animator.SetBool("Jumping", isJumping);
+        if (isJumping)
+            animator.SetTrigger("Jumping");
+        else
+            jump = false;
     }
 
-    public void onClick(int button) {
-        Debug.Log("Player Click Method.");
+    public void OnClick() {
+        if (!jump)
+            Debug.Log("Shooting");
     }
 }

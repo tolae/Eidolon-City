@@ -13,6 +13,7 @@ public class Crosshair : MonoBehaviour {
     private CircleCollider2D crosshairCollider; //Change animation based on what its over
     private ContactFilter2D crosshairContactFilter; //What the collider should be hitting
     private Collider2D[] overlapColliders;
+    private bool canShoot = true;
 
     [System.Serializable]
     public class IntEvent : UnityEvent<int> { }
@@ -36,9 +37,11 @@ public class Crosshair : MonoBehaviour {
 
         //TODO: crosshairCollider.OverlapCollider(crosshairContactFilter, overlapColliders);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) {
+            animator.SetTrigger("Shooting");
             onClickEvent.Invoke(0);
-        else if (Input.GetMouseButtonDown(1))
+        } else if (Input.GetMouseButtonDown(1)) {
             onClickEvent.Invoke(1);
+        }
     }
 }
