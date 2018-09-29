@@ -13,12 +13,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Flying
+  - Floating
+  - Ground
+  - Underground
+  - Bullet
+  - Wall
   - 
   - 
   - 
@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1000885483
+    locked: 0
+  - name: Foreground
+    uniqueID: 1268655497
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bullet
+    uniqueID: 4275689737
+    locked: 0
+  - name: UI
+    uniqueID: 3755290711
     locked: 0

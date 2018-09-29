@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
     public static GameController instance = null;
+    public World world;
 
     private void Awake() {
         if (instance == null) {
@@ -12,10 +13,9 @@ public class GameController : MonoBehaviour {
         }
     }
 
-
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Start() {
+        if (world == null) {
+            world = Instantiate(world, transform.position, transform.rotation);
+        }
+    }
 }

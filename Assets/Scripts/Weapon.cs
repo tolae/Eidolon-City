@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Weapon : MonoBehaviour {
 
@@ -10,6 +11,12 @@ public class Weapon : MonoBehaviour {
     [SerializeField] private Transform bulletPointDown;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Crosshair crosshair;
+    public UnityEvent shootEvent;
+
+    private void Awake() {
+        if (shootEvent == null)
+            shootEvent = new UnityEvent();
+    }
 
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
@@ -28,5 +35,7 @@ public class Weapon : MonoBehaviour {
         } else {
             Instantiate(bullet, bulletPointForward.position, bulletPointForward.rotation);
         }
+
+        shootEvent.Invoke();
     }
 }

@@ -41,7 +41,8 @@ public class Player : MonoBehaviour, Destroyable {
     }
 
     public void TakeDamage(float damage) {
-        health -= damage;
+        //health -= damage;
+        Debug.Log("Ow");
         if (health <= 0) {
             Destroy(gameObject);
         } else {
