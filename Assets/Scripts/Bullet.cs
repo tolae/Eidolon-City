@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-    public float speed = 25f;
-    public float damage = 5f;
-    public float range = 100f;
-    public float aliveTime = 5f;
+    [SerializeField] private float speed = 25f;
+    [SerializeField] private float damage = 5f;
+    [SerializeField] private float range = 100f;
+    [SerializeField] private float aliveTime = 5f;
     private float distanceTravelled = 0f;
     private float time = 0f;
 
     private new Rigidbody2D rigidbody2D;
     private new CircleCollider2D collider;
+    [SerializeField] private GameObject bulletDeath;
 
     private void Awake() {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -24,14 +25,27 @@ public class Bullet : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        //TODO If destroyable, do dmg.
-        Destroy(gameObject);
+        Dead(true);
+
+        Destroyable destroyable = collision.GetComponent<Destroyable>();
+        if (destroyable != null) {
+            destroyable.TakeDamage(damage);
+        }
     }
 
     private void FixedUpdate() {
         distanceTravelled += (rigidbody2D.velocity.magnitude * Time.deltaTime);
         time += Time.deltaTime;
         if (distanceTravelled > range || time > aliveTime)
-            Destroy(gameObject);
+            Dead(false);
+    }
+
+    private void Dead(bool hit) {
+        //Play explosion animation
+        if (hit) {
+            Instantiate(bulletDeath, transform.position, transform.rotation);
+        }
+
+        Destroy(gameObject);
     }
 }

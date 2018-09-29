@@ -5,7 +5,7 @@ using UnityEngine;
 /**
  * Class holds all the information for the Player.
  */
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour, Destroyable {
 
     /*Player Fields*/
     [SerializeField] private float health = 5; //The number of hitpoints a player can take before death
@@ -14,8 +14,9 @@ public class Player : MonoBehaviour {
     private Vector2 movement = new Vector2(); //The directional of where the player wants to move
     private bool jump = false; //If the character hit to jump or not
 
-    public MyCharacterController controller; //Tells the Player what to do when things happen
-    public Animator animator; //Selects which animation to be playing at what time
+    [SerializeField] private MyCharacterController controller; //Tells the Player what to do when things happen
+    [SerializeField] private Animator animator; //Selects which animation to be playing at what time
+    [SerializeField] private new SpriteRenderer renderer;
 
     // Use this for initialization
     void Start () {
@@ -37,6 +38,17 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate() {
         StartCoroutine(controller.Move(movement, jump));
+    }
+
+    public void TakeDamage(float damage) {
+        health -= damage;
+        if (health <= 0) {
+            Destroy(gameObject);
+        } else {
+            //TODO change animation
+            Color redtint = new Color(255f, 0f, 0f, 0.5f);
+            renderer.material.SetColor("TintColor", redtint);
+        }
     }
 
     public void OnJump(bool isJumping) {
