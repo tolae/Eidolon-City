@@ -11,7 +11,7 @@ public class MyCharacterController : MonoBehaviour {
     private Vector3 toCrosshair = new Vector3();
     private Quaternion targetRotation = new Quaternion();
 
-    private Vector2 reference_velocity = Vector2.zero;
+    private Vector2 ref_velocity = Vector2.zero;
     [Range(0, 0.3f)] [SerializeField] private float movement_smoothing = 0.05f;
     /*Events*/
     [System.Serializable]
@@ -27,6 +27,10 @@ public class MyCharacterController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        Rotate();
+    }
+
+    private void Rotate() {
         targetRotation = Quaternion.LookRotation(crosshair.transform.position - transform.position);
         targetRotation.x = 0;
         targetRotation.y = 0;
@@ -44,7 +48,7 @@ public class MyCharacterController : MonoBehaviour {
             rigidbody2D.velocity = Vector2.SmoothDamp(
                 rigidbody2D.velocity,
                 move,
-                ref reference_velocity,
+                ref ref_velocity,
                 movement_smoothing);
         }
         /*Make sure the Player cannot constantly jump*/

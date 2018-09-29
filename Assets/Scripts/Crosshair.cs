@@ -15,16 +15,8 @@ public class Crosshair : MonoBehaviour {
     private Collider2D[] overlapColliders;
     private bool canShoot = true;
 
-    [System.Serializable]
-    public class IntEvent : UnityEvent<int> { }
-    public IntEvent onClickEvent;
-
     private void Awake() {
         animator = GetComponent<Animator>();
-
-        if (onClickEvent == null) {
-            onClickEvent = new IntEvent();
-        }
     }
 
     private void FixedUpdate() {
@@ -34,14 +26,5 @@ public class Crosshair : MonoBehaviour {
                     mousePosition,
                     ref reference_velocity,
                     trackingSpeed);
-
-        //TODO: crosshairCollider.OverlapCollider(crosshairContactFilter, overlapColliders);
-
-        if (Input.GetMouseButtonDown(0)) {
-            animator.SetTrigger("Shooting");
-            onClickEvent.Invoke(0);
-        } else if (Input.GetMouseButtonDown(1)) {
-            onClickEvent.Invoke(1);
-        }
     }
 }

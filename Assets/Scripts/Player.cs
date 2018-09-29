@@ -17,8 +17,8 @@ public class Player : MonoBehaviour {
     public MyCharacterController controller; //Tells the Player what to do when things happen
     public Animator animator; //Selects which animation to be playing at what time
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         health = 5;
         speed = 10;
 	}
@@ -44,10 +44,5 @@ public class Player : MonoBehaviour {
             animator.SetTrigger("Jumping");
         else
             jump = false;
-    }
-
-    public void OnClick() {
-        if (!jump)
-            Debug.Log("Shooting");
     }
 }
