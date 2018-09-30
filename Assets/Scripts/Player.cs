@@ -14,9 +14,10 @@ public class Player : MonoBehaviour, Destroyable {
     private Vector2 movement = new Vector2(); //The directional of where the player wants to move
     private bool jump = false; //If the character hit to jump or not
 
-    [SerializeField] private MyCharacterController controller; //Tells the Player what to do when things happen
-    [SerializeField] private Animator animator; //Selects which animation to be playing at what time
-    [SerializeField] private new SpriteRenderer renderer;
+    public MyCharacterController controller; //Tells the Player what to do when things happen
+    public Animator animator; //Selects which animation to be playing at what time
+    public new SpriteRenderer renderer;
+    public Weapon weapon;
 
     // Use this for initialization
     void Start () {

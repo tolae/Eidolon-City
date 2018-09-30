@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour {
 
     public static GameController instance = null;
     public World world;
+    public Crosshair crosshair;
 
     private void Awake() {
         if (instance == null) {
@@ -17,5 +18,9 @@ public class GameController : MonoBehaviour {
         if (world == null) {
             world = Instantiate(world, transform.position, transform.rotation);
         }
+
+        world.game = instance;
+
+        crosshair = Instantiate(crosshair, world.transform);
     }
 }

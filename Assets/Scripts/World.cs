@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class World : MonoBehaviour {
 
-    public int width = 20;
-    public int height = 20;
+    public GameController game;
+    public Player player;
+    public Transform spawnLocation;
 
-    public GameObject wall;
-    private Vector2 wallPosition = new Vector2();
+    private void Start() {
+        player = Instantiate(player, spawnLocation.position, spawnLocation.rotation, transform);
 
-	// Use this for initialization
-	void Start () {
-        GenerateAbsoluteBorder();
-	}
-
-    private void GenerateAbsoluteBorder() {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                if (x == 0 || y == 0 || x == width - 1 || y == height - 1) {
-                    wallPosition.Set(x + transform.position.x, y + transform.position.y);
-                    Instantiate(wall, wallPosition, Quaternion.identity);
-                }
-            }
-        }
+        player.controller.crosshair = game.crosshair;
+        player.weapon.crosshair = game.crosshair;
     }
+
 }

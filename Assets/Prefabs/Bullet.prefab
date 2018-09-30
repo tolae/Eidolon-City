@@ -112,7 +112,7 @@ MonoBehaviour:
   damage: 5
   range: 100
   aliveTime: 5
-  bulletDeath: {fileID: 1563502190351200, guid: 6ac8d0bda504d3540b7e03a730b7ab22,
+  bulletDeath: {fileID: 114286388571286980, guid: 6ac8d0bda504d3540b7e03a730b7ab22,
     type: 2}
 --- !u!212 &212139306596131432
 SpriteRenderer:
@@ -147,7 +147,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -19277559
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5914581b91a20a44a897a16c474ec84f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

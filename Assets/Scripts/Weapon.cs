@@ -9,9 +9,11 @@ public class Weapon : MonoBehaviour {
     [SerializeField] private Transform bulletPointBackward;
     [SerializeField] private Transform bulletPointUp;
     [SerializeField] private Transform bulletPointDown;
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private Crosshair crosshair;
+    public Bullet bullet;
+    public Crosshair crosshair;
     public UnityEvent shootEvent;
+
+    private readonly float z_bug = 0.5f;
 
     private void Awake() {
         if (shootEvent == null)
