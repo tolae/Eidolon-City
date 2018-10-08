@@ -31,13 +31,20 @@ public class MyCharacterController : MonoBehaviour {
     }
 
     private void Rotate() {
-        targetRotation = Quaternion.LookRotation(crosshair.transform.position - transform.position);
-        targetRotation.x = 0;
-        targetRotation.y = 0;
-
         Debug.DrawLine(transform.position, crosshair.transform.position, Color.black, Time.deltaTime);
 
+        toCrosshair = crosshair.transform.position - transform.position;
+
+        float angle = Vector3.Dot(toCrosshair, Vector3.right);
+        angle = angle / (toCrosshair.magnitude * Vector3.right.magnitude);
+
+        if (toCrosshair.y > 0)
+            targetRotation = Quaternion.Euler(0, 0, Mathf.Acos(angle) * Mathf.Rad2Deg);
+        else
+            targetRotation = Quaternion.Euler(0, 0, Mathf.Acos(angle) * Mathf.Rad2Deg * -1);
+
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1);
+        
     }
 
     public IEnumerator Move(Vector2 move, bool jump) {

@@ -9,6 +9,7 @@ public class Crosshair : MonoBehaviour {
     public LayerMask layerMask;
 
     [Range(0, 0.3f)] [SerializeField] private float trackingSpeed = 0.01f;
+    private Camera[] cameras;
     private Vector2 mousePosition = Vector2.zero;
     private Vector2 reference_velocity = Vector2.zero;
 
@@ -22,7 +23,10 @@ public class Crosshair : MonoBehaviour {
     }
 
     private void Move() {
+        //mousePosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        //mousePosition = Camera.main.ViewportToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         transform.position = Vector2.SmoothDamp(
                     transform.position,
                     mousePosition,
