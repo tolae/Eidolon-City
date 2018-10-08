@@ -25,7 +25,7 @@ public class Player : MonoBehaviour, Destroyable {
         speed = 10;
 	}
 
-    private void Update() {
+    void Update() {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -40,8 +40,8 @@ public class Player : MonoBehaviour, Destroyable {
     private void FixedUpdate() {
         StartCoroutine(controller.Move(movement, jump));
     }
-
-    public void TakeDamage(float damage) {
+    
+    void Destroyable.TakeDamage(float damage) {
         //health -= damage;
         Debug.Log("Ow");
         if (health <= 0) {
