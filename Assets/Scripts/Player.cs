@@ -8,16 +8,16 @@ using UnityEngine;
 public class Player : MonoBehaviour, Destroyable {
 
     /*Player Fields*/
-    [SerializeField] private float health = 5; //The number of hitpoints a player can take before death
-    [SerializeField] private float speed = 10;  //How fast the player moves
-    [SerializeField] private float jumpSpeed = 15; //How fast the player moves while jumping
-    private Vector2 movement = new Vector2(); //The directional of where the player wants to move
-    private bool jump = false; //If the character hit to jump or not
+    [SerializeField] private float health = 5; /* The number of hitpoints a player can take before death */
+    [SerializeField] private float speed = 10;  /* How fast the player moves */
+    [SerializeField] private float jumpSpeed = 15; /* How fast the player moves while jumping */
+    private Vector2 movement = new Vector2(); /* The directional of where the player wants to move */
+    private bool jump = false; /* If the character hit to jump or not */
 
-    public MyCharacterController controller; //Tells the Player what to do when things happen
-    public Animator animator; //Selects which animation to be playing at what time
-    public new SpriteRenderer renderer;
-    public Weapon weapon;
+    public MyCharacterController controller; /* Tells the Player what to do when things happen */
+    public Animator animator; /* Selects which animation to be playing at what time */
+    public new SpriteRenderer renderer; /* Used to change the color when hit */
+    public Weapon weapon; /* The weapon for the player. */
 
     // Use this for initialization
     void Start () {
@@ -41,9 +41,10 @@ public class Player : MonoBehaviour, Destroyable {
         StartCoroutine(controller.Move(movement, jump));
     }
     
+    /* TakeDamage method from the destroyable.      *
+     * Damage applied makes the player turn red.    */
     void Destroyable.TakeDamage(float damage) {
-        //health -= damage;
-        Debug.Log("Ow");
+        health -= damage; /* Damage algorithm */
         if (health <= 0) {
             Destroy(gameObject);
         } else {
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour, Destroyable {
         }
     }
 
+    /* If the player is jumping, apply jumping animation and reset. */
     public void OnJump(bool isJumping) {
         if (isJumping)
             animator.SetTrigger("Jumping");
