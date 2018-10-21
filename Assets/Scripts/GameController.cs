@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Cinemachine;
 using UnityEngine;
 
 /**
@@ -9,6 +8,7 @@ public class GameController : MonoBehaviour {
 
     public static GameController instance = null;
     public World world;
+    public CinemachineVirtualCamera vCam;
     public Crosshair crosshair;
 
     private void Awake() {
@@ -20,6 +20,10 @@ public class GameController : MonoBehaviour {
     private void Start() {
         if (world == null) {
             world = Instantiate(world, transform.position, transform.rotation);
+        }
+
+        if (vCam == null) {
+            vCam = GetComponentInChildren<CinemachineVirtualCamera>();
         }
 
         world.game = instance;

@@ -19,12 +19,6 @@ public class Player : MonoBehaviour, Destroyable {
     public new SpriteRenderer renderer; /* Used to change the color when hit */
     public Weapon weapon; /* The weapon for the player. */
 
-    // Use this for initialization
-    void Start () {
-        health = 5;
-        speed = 10;
-	}
-
     void Update() {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");

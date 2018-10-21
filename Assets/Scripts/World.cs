@@ -17,6 +17,9 @@ public class World : MonoBehaviour {
         /* Sets the players crosshairs */
         player.controller.crosshair = game.crosshair;
         player.weapon.crosshair = game.crosshair;
+
+        /* Set the Virutal Camera to follow the player */
+        game.vCam.Follow = player.transform;
     }
 
 }

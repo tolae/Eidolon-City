@@ -40,8 +40,8 @@ GameObject:
   - component: {fileID: 50668975361955262}
   - component: {fileID: 95413741165624102}
   - component: {fileID: 114388172744361148}
-  - component: {fileID: 61266736978366898}
   - component: {fileID: 114947349961372702}
+  - component: {fileID: 58246142520135980}
   m_Layer: 10
   m_Name: TestPlayerPrefab
   m_TagString: Untagged
@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1551924401159206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.3959, y: -6.140791, z: 0}
+  m_LocalPosition: {x: 1.340088, y: -4.8884974, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4799371589420506}
@@ -96,8 +96,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61266736978366898
-BoxCollider2D:
+--- !u!58 &58246142520135980
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -109,18 +109,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 2.56, y: 2.56}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.25
 --- !u!95 &95413741165624102
 Animator:
   serializedVersion: 3
@@ -183,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 500
-  speed: 30.03
+  speed: 5
   jumpSpeed: 15
   controller: {fileID: 114992496616832992}
   animator: {fileID: 95413741165624102}
