@@ -8,6 +8,8 @@ public class World : MonoBehaviour {
 
     public GameController game; /* Current game session */
     public Player player; /* Current player */
+    public BasicEnemy enemy; /* The enemy to be created */
+    public List<BasicEnemy> basicEnemies; /* Basic enemies in the world */
     public Transform spawnLocation; /* Spawn location for the player */
 
     private void Start() {
@@ -17,6 +19,10 @@ public class World : MonoBehaviour {
         /* Sets the players crosshairs */
         player.controller.crosshair = game.crosshair;
         player.weapon.crosshair = game.crosshair;
+
+        /* Creates an enemy as a child of this object */
+        enemy = Instantiate(enemy, Vector3.zero, Quaternion.identity, transform);
+        enemy.world = this;
 
         /* Set the Virutal Camera to follow the player */
         game.vCam.Follow = player.transform;
