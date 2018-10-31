@@ -6,6 +6,7 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
     /* Params Specific to this enemy */
     [SerializeField] private float health;
     [SerializeField] private float speed;
+    public bool playerFound = false;
 
     public World world;
 
@@ -13,9 +14,12 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
     public Animator animator; /* Selects which animation to be playing at what time */
     public new SpriteRenderer renderer; /* Used to change the color when hit */
 
+    public GameObject capturable;
+
     public void TakeDamage(float damage) {
         health -= damage;
         if (health <= 0) {
+            Instantiate(capturable, transform.position, Quaternion.identity);
             Destroy(gameObject);
         } else {
             //TODO change to animation
@@ -24,15 +28,11 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
         }
     }
 
-    // Use this for initialization
-    void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    private void Start() {
+        capturable.GetComponent<Capturable>().world = world;
+    }
 
     private void FixedUpdate() {
-        StartCoroutine(controller.Move(world.player.transform.position, speed));
+        StartCoroutine(controller.Move(world.player.transform.position, speed, playerFound));
     }
 }

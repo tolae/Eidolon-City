@@ -37,12 +37,14 @@ public class Bullet : MonoBehaviour {
      * and applies damage to it. It lets the object being hit handle        * 
      * its own damage                                                       */
     private void OnTriggerEnter2D(Collider2D collision) {
-        Dead(true); /* Kill the bullet, no multi-hits */
+        if (collision.CompareTag("Killable")) {
+            Dead(true); /* Kill the bullet, no multi-hits */
 
-        /* Locate destroyable, and apply damage if its found */
-        Destroyable destroyable = collision.GetComponent<Destroyable>();
-        if (destroyable != null) {
-            destroyable.TakeDamage(damage);
+            /* Locate destroyable, and apply damage if its found */
+            Destroyable destroyable = collision.GetComponent<Destroyable>();
+            if (destroyable != null) {
+                destroyable.TakeDamage(damage);
+            }
         }
     }
 

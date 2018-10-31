@@ -11,6 +11,23 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1589748349106216}
   m_IsPrefabAsset: 1
+--- !u!1 &1043752293315960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4017953213318614}
+  - component: {fileID: 58888233567187942}
+  - component: {fileID: 114270532119970160}
+  m_Layer: 10
+  m_Name: Range Detection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1589748349106216
 GameObject:
   m_ObjectHideFlags: 0
@@ -19,30 +36,44 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4717901930974736}
+  - component: {fileID: 58888216644384820}
   - component: {fileID: 212571114771922824}
-  - component: {fileID: 58673431637846450}
   - component: {fileID: 50779464186401968}
   - component: {fileID: 95468441592744550}
   - component: {fileID: 114996187723304344}
   - component: {fileID: 114352408453343156}
   - component: {fileID: 114309715855305820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Killable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4017953213318614
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043752293315960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4717901930974736}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4717901930974736
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1589748349106216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.73, y: -7.04, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: -3.9757333, y: -2.192216, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4017953213318614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,7 +97,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58673431637846450
+--- !u!58 &58888216644384820
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,6 +112,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!58 &58888233567187942
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043752293315960}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
 --- !u!95 &95468441592744550
 Animator:
   serializedVersion: 3
@@ -99,6 +145,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114270532119970160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043752293315960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba912c01e6f906849b3171e508e1bd31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114309715855305820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4cb227420211248af6dd537f30eaf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 50
+  speed: 0.5
+  playerFound: 0
+  world: {fileID: 0}
+  controller: {fileID: 114352408453343156}
+  animator: {fileID: 95468441592744550}
+  renderer: {fileID: 212571114771922824}
+  capturable: {fileID: 1407860910604270, guid: 2a96b0a3703a30143932d39b44f333de, type: 2}
 --- !u!114 &114352408453343156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd4d85a07263e44d916e82effabb337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement_smoothing: 0.05
 --- !u!114 &114996187723304344
 MonoBehaviour:
   m_ObjectHideFlags: 1

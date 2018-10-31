@@ -22,7 +22,7 @@ public class World : MonoBehaviour {
 
         /* Creates an enemy as a child of this object */
         enemy = Instantiate(enemy, Vector3.zero, Quaternion.identity, transform);
-        enemy.world = this;
+        enemy.world = game.world;
 
         /* Set the Virutal Camera to follow the player */
         game.vCam.Follow = player.transform;

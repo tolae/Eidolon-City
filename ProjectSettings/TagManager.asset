@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grid
+  - Crosshair
+  - Bullet
+  - Killable
+  - Capturable
+  - Sensor
   layers:
   - Default
   - TransparentFX
