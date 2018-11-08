@@ -6,7 +6,7 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
     /* Params Specific to this enemy */
     [SerializeField] private float health;
     [SerializeField] private float speed;
-    public bool playerFound = false;
+    private bool playerFound = false;
 
     public World world;
 
@@ -26,6 +26,14 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
             Color redtint = new Color(255f, 0f, 0f, 0.5f);
             renderer.material.SetColor("TintColor", redtint);
         }
+    }
+
+    public void foundPlayer() {
+        playerFound = true;
+    }
+
+    public void lostPlayer() {
+        playerFound = false;
     }
 
     private void Start() {

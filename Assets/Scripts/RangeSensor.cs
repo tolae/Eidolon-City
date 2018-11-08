@@ -6,15 +6,21 @@ public class RangeSensor : MonoBehaviour {
 
     bool detected;
 
+    private BasicEnemy attachedEnemy; /* The enemy this sensor is attached too */
+
+    private void Awake() {
+        attachedEnemy = GetComponentInParent<BasicEnemy>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            GetComponentInParent<BasicEnemy>().playerFound = true;
+            attachedEnemy.foundPlayer();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            GetComponentInParent<BasicEnemy>().playerFound = false;
+            attachedEnemy.lostPlayer();
         }
     }
 }

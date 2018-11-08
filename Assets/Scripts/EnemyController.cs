@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 
     [Range(0, 0.3f)] [SerializeField] private float movement_smoothing = 0.05f; /* How much the movement should be smoothed */
+    private bool wasFound = false;
 
     private Vector3 toPlayer = Vector3.zero; /* The direction of the player relative to the enemy */
     private Vector3 playerPos = Vector3.zero;
@@ -40,6 +41,7 @@ public class EnemyController : MonoBehaviour {
 
     public IEnumerator Move(Vector3 target, float speed, bool playerLocated) {
         if (playerLocated) {
+            wasFound = true;
             playerPos = target;
 
             Rotate();
@@ -49,9 +51,11 @@ public class EnemyController : MonoBehaviour {
                     transform.right * speed,
                     ref ref_velocity,
                     movement_smoothing);
-        } else {
+        }
+        if (wasFound && !playerLocated){
             yield return new WaitForSeconds(1f);
             rigidbody2D.velocity = Vector2.zero;
+            wasFound = false;
         }
     }
 }
