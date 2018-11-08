@@ -13,13 +13,14 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
     public EnemyController controller; /* Controls the enemies basic movement */
     public Animator animator; /* Selects which animation to be playing at what time */
     public new SpriteRenderer renderer; /* Used to change the color when hit */
-
+    
     public GameObject capturable;
 
     public void TakeDamage(float damage) {
         health -= damage;
         if (health <= 0) {
-            Instantiate(capturable, transform.position, Quaternion.identity);
+            GameObject inst = Instantiate(capturable, transform.position, Quaternion.identity);
+            inst.GetComponent<Capturable>().gameController = world.game;
             Destroy(gameObject);
         } else {
             //TODO change to animation

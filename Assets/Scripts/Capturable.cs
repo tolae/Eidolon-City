@@ -8,6 +8,7 @@ public class Capturable : MonoBehaviour {
     [SerializeField] private float deadTime = 5;
 
     public World world;
+    public GameController gameController;
     public GameObject original;
 
     private void Start() {
@@ -17,6 +18,7 @@ public class Capturable : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         Debug.Log("Wow");
         if (collision.CompareTag("Player")) {
+            gameController.Captured(1000);
             Destroy(gameObject);
         }
     }

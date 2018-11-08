@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
     public World world;
     public CinemachineVirtualCamera vCam;
     public Crosshair crosshair;
+    public DreamBar dreamBar;
 
     private void Awake() {
         if (instance == null) {
@@ -24,10 +25,15 @@ public class GameController : MonoBehaviour {
 
         if (vCam == null) {
             vCam = GetComponentInChildren<CinemachineVirtualCamera>();
+            dreamBar = vCam.GetComponentInChildren<DreamBar>();
         }
 
         world.game = instance;
 
         crosshair = Instantiate(crosshair, world.transform);
+    }
+
+    public void Captured(float amount) {
+        dreamBar.Fill(amount);
     }
 }

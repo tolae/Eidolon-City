@@ -21,7 +21,7 @@ public class World : MonoBehaviour {
         player.weapon.crosshair = game.crosshair;
 
         /* Creates an enemy as a child of this object */
-        enemy = Instantiate(enemy, Vector3.zero, Quaternion.identity, transform);
+        enemy = Instantiate(enemy, new Vector3(-10, 0, 0), Quaternion.identity, transform);
         enemy.world = game.world;
 
         /* Set the Virutal Camera to follow the player */

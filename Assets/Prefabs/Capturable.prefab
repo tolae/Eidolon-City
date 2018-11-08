@@ -90,6 +90,7 @@ MonoBehaviour:
   currTime: 0
   deadTime: 5
   world: {fileID: 0}
+  gameController: {fileID: 0}
   original: {fileID: 1589748349106216, guid: f573a38771f41af48adfe1d9bda66c77, type: 2}
 --- !u!212 &212298273340779500
 SpriteRenderer:
