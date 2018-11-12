@@ -14,13 +14,8 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
     public EnemyController controller; /* Controls the enemies basic movement */
     public Animator animator; /* Selects which animation to be playing at what time */
     public new SpriteRenderer renderer; /* Used to change the color when hit */
-    private new Rigidbody2D rigidbody;
     
     public GameObject capturable;
-
-    private void Awake() {
-        rigidbody = GetComponent<Rigidbody2D>();
-    }
 
     IEnumerator Destroyable.TakeDamage(Vector2 directional, float damage) {
         health -= damage;

@@ -57,6 +57,6 @@ public class Crosshair : MonoBehaviour {
 
     /* Shoot trigger method. Changes the animation to shooting. */
     public void OnShoot() {
-        animator.SetTrigger("Shooting");
+        //animator.SetTrigger("Shooting");
     }
 }

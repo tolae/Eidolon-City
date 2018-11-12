@@ -27,13 +27,9 @@ public class GameController : MonoBehaviour {
             world = Instantiate(world, transform.position, transform.rotation);
         }
 
-        if (vCam == null) {
-            vCam = GetComponentInChildren<CinemachineVirtualCamera>();
-            dreamBar = vCam.GetComponentInChildren<DreamBar>();
-            dreamBar.setGame(this);
-        }
-
         world.game = instance;
+
+        dreamBar.setGame(this);
 
         crosshair = Instantiate(crosshair, world.transform);
 
@@ -47,7 +43,6 @@ public class GameController : MonoBehaviour {
 
     public void Full(bool isFull) {
         if (isFull && levelCounter >= maxLevel) {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
         } else {
             //TODO Move to next level

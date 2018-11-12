@@ -23,8 +23,7 @@ public class World : MonoBehaviour {
         player = Instantiate(player, spawnLocation.position, spawnLocation.rotation, transform);
 
         /* Sets the players crosshairs */
-        player.controller.crosshair = game.crosshair;
-        player.weapon.crosshair = game.crosshair;
+        player.SetCrosshair(game.crosshair);
 
         /* Creates an enemy as a child of this object */
         enemy = Instantiate(enemy, new Vector3(-10, 0, 0), Quaternion.identity, transform);

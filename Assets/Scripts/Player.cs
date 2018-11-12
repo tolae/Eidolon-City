@@ -10,14 +10,14 @@ public class Player : MonoBehaviour, Destroyable {
     /*Player Fields*/
     [SerializeField] private float health = 5; /* The number of hitpoints a player can take before death */
     [SerializeField] private float speed = 10;  /* How fast the player moves */
-    [SerializeField] private float jumpSpeed = 15; /* How fast the player moves while jumping */
+    //[SerializeField] private float jumpSpeed = 15; /* How fast the player moves while jumping */
     private Vector2 movement; /* The directional of where the player wants to move */
     private bool jump; /* If the character hit to jump or not */
 
-    public MyCharacterController controller; /* Tells the Player what to do when things happen */
-    public Animator animator; /* Selects which animation to be playing at what time */
-    public new SpriteRenderer renderer; /* Used to change the color when hit */
-    public Weapon weapon; /* The weapon for the player. */
+    [SerializeField] private MyCharacterController controller; /* Tells the Player what to do when things happen */
+    [SerializeField] private Animator animator; /* Selects which animation to be playing at what time */
+    [SerializeField] private new SpriteRenderer renderer; /* Used to change the color when hit */
+    [SerializeField] private Weapon weapon; /* The weapon for the player. */
 
     private new Rigidbody2D rigidbody;
 
@@ -28,13 +28,13 @@ public class Player : MonoBehaviour, Destroyable {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Start() {
+    private void Start() {
         movement = new Vector2();
         jump = false;
         canMove = true;
     }
 
-    void Update() {
+    private void Update() {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -80,5 +80,10 @@ public class Player : MonoBehaviour, Destroyable {
             animator.SetTrigger("Jumping");
         else
             jump = false;
+    }
+
+    public void SetCrosshair(Crosshair crosshair) {
+        controller.crosshair = crosshair;
+        weapon.crosshair = crosshair;
     }
 }

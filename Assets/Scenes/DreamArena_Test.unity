@@ -966,10 +966,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   world: {fileID: 681956833}
-  vCam: {fileID: 0}
+  vCam: {fileID: 1651916426}
   crosshair: {fileID: 114502758972830506, guid: fbb8006028071894eb65d938ccf803d6,
     type: 2}
-  dreamBar: {fileID: 0}
+  dreamBar: {fileID: 795647632}
 --- !u!4 &188900144
 Transform:
   m_ObjectHideFlags: 0
