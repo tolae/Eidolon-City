@@ -47,9 +47,18 @@ public class GameController : MonoBehaviour {
 
     public void Full(bool isFull) {
         if (isFull && levelCounter >= maxLevel) {
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             SceneManager.LoadScene("WinScene", LoadSceneMode.Single);
         } else {
             //TODO Move to next level
+        }
+    }
+
+    public void PlayerDead(bool isDead) {
+        if (isDead) {
+            world.Clean();
+            world.player = null;
+            SceneManager.LoadScene("LoseScene", LoadSceneMode.Single);
         }
     }
 }

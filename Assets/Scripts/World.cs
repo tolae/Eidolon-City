@@ -41,4 +41,12 @@ public class World : MonoBehaviour {
         game.vCam.Follow = player.transform;
     }
 
+    public void Clean() {
+        foreach (BasicEnemy be in enemyList) {
+            be.world = null;
+            Destroy(be);
+        }
+
+        enemyList.Clear();
+    }
 }

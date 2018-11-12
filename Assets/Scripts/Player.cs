@@ -62,6 +62,7 @@ public class Player : MonoBehaviour, Destroyable {
         rigidbody.AddForce(5000 * directional);
 
         if (health <= 0) {
+            GameObject.Find("GameController").GetComponent<GameController>().PlayerDead(true);
             Destroy(gameObject);
         } else {
             //TODO change animation
