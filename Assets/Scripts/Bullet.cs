@@ -17,13 +17,11 @@ public class Bullet : MonoBehaviour {
     private float time = 0f; /* Holds how long the bullet has been alive */
 
     private new Rigidbody2D rigidbody2D; /* The rigidbody of the bullet */
-    private new CircleCollider2D collider; /* The collider on the bullet */
     [SerializeField] private BulletDeath bulletDeath; /* The bullet's death animation */
 
     private void Awake() {
         /* Grab components required for the bullet */
         rigidbody2D = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CircleCollider2D>();
     }
 
     private void Start() {
@@ -43,7 +41,9 @@ public class Bullet : MonoBehaviour {
             /* Locate destroyable, and apply damage if its found */
             Destroyable destroyable = collision.GetComponent<Destroyable>();
             if (destroyable != null) {
-                destroyable.TakeDamage(damage);
+                StartCoroutine(
+                    destroyable
+                        .TakeDamage(rigidbody2D.velocity.normalized, damage));
             }
         }
     }

@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   speed: 0.5
-  playerFound: 0
+  damage: 50
   world: {fileID: 0}
   controller: {fileID: 114352408453343156}
   animator: {fileID: 95468441592744550}

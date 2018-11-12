@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class DreamBar : MonoBehaviour {
 
-    float percentageFull;
     float fill;
     [SerializeField] float total = 2000;
+
+    private GameController game;
 
     public Image image;
 
 	// Use this for initialization
 	void Start () {
-        percentageFull = 0f;
+        fill = 0;
         image = GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        percentageFull = fill / total;
-        image.fillAmount = percentageFull;
+        image.fillAmount = fill / total;
 	}
 
     public void Fill(float amount) {
@@ -28,9 +28,16 @@ public class DreamBar : MonoBehaviour {
     }
 
     private IEnumerator BeginFilling(float amount) {
+        amount += fill;
         while (fill != amount) {
             fill += amount / 50f;
             yield return new WaitForFixedUpdate();
         }
+
+        game.Full(fill >= total);
+    }
+
+    public void setGame(GameController currentGame) {
+        game = currentGame;
     }
 }

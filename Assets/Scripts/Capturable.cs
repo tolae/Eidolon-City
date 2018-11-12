@@ -16,7 +16,6 @@ public class Capturable : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("Wow");
         if (collision.CompareTag("Player")) {
             gameController.Captured(1000);
             Destroy(gameObject);

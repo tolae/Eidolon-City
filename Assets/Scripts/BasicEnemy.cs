@@ -6,6 +6,7 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
     /* Params Specific to this enemy */
     [SerializeField] private float health;
     [SerializeField] private float speed;
+    [SerializeField] private float damage;
     private bool playerFound = false;
 
     public World world;
@@ -13,10 +14,15 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
     public EnemyController controller; /* Controls the enemies basic movement */
     public Animator animator; /* Selects which animation to be playing at what time */
     public new SpriteRenderer renderer; /* Used to change the color when hit */
+    private new Rigidbody2D rigidbody;
     
     public GameObject capturable;
 
-    public void TakeDamage(float damage) {
+    private void Awake() {
+        rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    IEnumerator Destroyable.TakeDamage(Vector2 directional, float damage) {
         health -= damage;
         if (health <= 0) {
             GameObject inst = Instantiate(capturable, transform.position, Quaternion.identity);
@@ -27,6 +33,8 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
             Color redtint = new Color(255f, 0f, 0f, 0.5f);
             renderer.material.SetColor("TintColor", redtint);
         }
+
+        yield return null;
     }
 
     public void foundPlayer() {
@@ -43,5 +51,15 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
 
     private void FixedUpdate() {
         StartCoroutine(controller.Move(world.player.transform.position, speed, playerFound));
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.collider.CompareTag("Player")) {
+            Vector2 directional = collision.transform.position - transform.position;
+
+            StartCoroutine(
+                collision.collider.GetComponent<Destroyable>()
+                    .TakeDamage(directional.normalized, damage));
+        }
     }
 }
