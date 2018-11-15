@@ -18,15 +18,10 @@ public class Player : MonoBehaviour, Destroyable {
     [SerializeField] private Animator animator; /* Selects which animation to be playing at what time */
     [SerializeField] private new SpriteRenderer renderer; /* Used to change the color when hit */
     [SerializeField] private Weapon weapon; /* The weapon for the player. */
-
-    private new Rigidbody2D rigidbody;
+    [SerializeField] private new Rigidbody2D rigidbody;
 
     /* Status */
     private bool canMove;
-
-    private void Awake() {
-        rigidbody = GetComponent<Rigidbody2D>();
-    }
 
     private void Start() {
         movement = new Vector2();

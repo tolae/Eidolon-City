@@ -5,20 +5,22 @@ using UnityEngine.Events;
 
 public class BasicEnemy : MonoBehaviour, Destroyable {
     /* Params Specific to this enemy */
-    [SerializeField] private float health;
-    [SerializeField] private float speed;
-    [SerializeField] private float damage;
-    public bool playerFound = false;
+    [SerializeField] float health;
+    [SerializeField] float speed;
+    [SerializeField] float damage;
+    [SerializeField] float attackSpeed;
+    float attackTimeStart = 0;
+    bool playerFound = false;
 
     public World world;
 
-    public EnemyController controller; /* Controls the enemies basic movement */
-    public Animator animator; /* Selects which animation to be playing at what time */
-    public new SpriteRenderer renderer; /* Used to change the color when hit */
-    
-    public GameObject capturable;
+    [SerializeField] new Rigidbody2D rigidbody;
+    [SerializeField] EnemyController controller; /* Controls the enemies basic movement */
+    [SerializeField] Animator animator; /* Selects which animation to be playing at what time */
+    [SerializeField] new SpriteRenderer renderer; /* Used to change the color when hit */
+    [SerializeField] GameObject capturable;
 
-    IEnumerator Destroyable.TakeDamage(Vector2 directional, float damage) {
+    public IEnumerator TakeDamage(Vector2 directional, float damage) {
         health -= damage;
         if (health <= 0) {
             GameObject inst = Instantiate(capturable, transform.position, Quaternion.identity);
@@ -43,15 +45,22 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
 
     protected virtual void FixedUpdate() {
         StartCoroutine(controller.Move(world.player.transform.position, speed, playerFound));
+        if (attackTimeStart == -1) {
+            attackTimeStart = Time.time;
+        }
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.collider.CompareTag("Player")) {
-            Vector2 directional = collision.transform.position - transform.position;
+    public virtual void OnAttack(Collider2D collider) {
+        if (collider.CompareTag("Player")) {
+            if (Time.time - (attackTimeStart + attackSpeed) >= 0) {
+                Vector2 directional = collider.transform.position - transform.position;
 
-            StartCoroutine(
-                collision.collider.GetComponent<Destroyable>()
-                    .TakeDamage(directional.normalized, damage));
+                StartCoroutine(
+                    collider.GetComponent<Destroyable>()
+                        .TakeDamage(directional.normalized, damage));
+
+                attackTimeStart = -1;
+            }
         }
     }
 }

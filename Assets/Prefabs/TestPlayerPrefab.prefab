@@ -35,13 +35,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4539158028958048}
   - component: {fileID: 212019967165087084}
-  - component: {fileID: 114853948915411096}
-  - component: {fileID: 114992496616832992}
+  - component: {fileID: 58246142520135980}
   - component: {fileID: 50668975361955262}
   - component: {fileID: 95413741165624102}
+  - component: {fileID: 114992496616832992}
+  - component: {fileID: 114853948915411096}
   - component: {fileID: 114388172744361148}
   - component: {fileID: 114947349961372702}
-  - component: {fileID: 58246142520135980}
   m_Layer: 10
   m_Name: TestPlayerPrefab
   m_TagString: Player
@@ -178,6 +178,7 @@ MonoBehaviour:
   animator: {fileID: 95413741165624102}
   renderer: {fileID: 212019967165087084}
   weapon: {fileID: 114388172744361148}
+  rigidbody: {fileID: 50668975361955262}
 --- !u!114 &114947349961372702
 MonoBehaviour:
   m_ObjectHideFlags: 1

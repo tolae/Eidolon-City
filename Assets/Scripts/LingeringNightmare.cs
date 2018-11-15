@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LingeringNightmare : BasicEnemy {
 
-    public int hivemindDetect = 0;
+    private int hivemindDetect = 0;
 
     new public void IsPlayerFound(bool isFound) {
         base.IsPlayerFound(isFound);
