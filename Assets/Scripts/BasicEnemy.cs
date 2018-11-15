@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BasicEnemy : MonoBehaviour, Destroyable {
     /* Params Specific to this enemy */
     [SerializeField] private float health;
     [SerializeField] private float speed;
     [SerializeField] private float damage;
-    private bool playerFound = false;
+    public bool playerFound = false;
 
     public World world;
 
@@ -32,23 +33,19 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
         yield return null;
     }
 
-    public void foundPlayer() {
-        playerFound = true;
+    public virtual void IsPlayerFound(bool isFound) {
+        playerFound = isFound;
     }
 
-    public void lostPlayer() {
-        playerFound = false;
-    }
-
-    private void Start() {
+    protected virtual void Start() {
         capturable.GetComponent<Capturable>().world = world;
     }
 
-    private void FixedUpdate() {
+    protected virtual void FixedUpdate() {
         StartCoroutine(controller.Move(world.player.transform.position, speed, playerFound));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
+    protected virtual void OnCollisionEnter2D(Collision2D collision) {
         if (collision.collider.CompareTag("Player")) {
             Vector2 directional = collision.transform.position - transform.position;
 

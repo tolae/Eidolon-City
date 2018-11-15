@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour {
             targetRotation = Quaternion.Euler(0, 0, Mathf.Acos(angle) * Mathf.Rad2Deg * -1);
 
         /* Apply the rotation */
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1);
+        transform.rotation = targetRotation;
     }
 
     public IEnumerator Move(Vector3 target, float speed, bool playerLocated) {
@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour {
                     ref ref_velocity,
                     movement_smoothing);
         }
-        if (wasFound && !playerLocated){
+        if (wasFound && !playerLocated) {
             yield return new WaitForSeconds(1f);
             rigidbody2D.velocity = Vector2.zero;
             wasFound = false;

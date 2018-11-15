@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95372414343364146}
   - component: {fileID: 114860979149716542}
   m_Layer: 10
-  m_Name: Capturable
+  m_Name: EnemyCapturable
   m_TagString: Capturable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

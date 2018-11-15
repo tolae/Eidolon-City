@@ -1,26 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RangeSensor : MonoBehaviour {
 
-    bool detected;
+    [System.Serializable]
+    public class BoolEvent : UnityEvent<bool> { }
+    public BoolEvent onPlayerDetected;
 
-    private BasicEnemy attachedEnemy; /* The enemy this sensor is attached too */
-
-    private void Awake() {
-        attachedEnemy = GetComponentInParent<BasicEnemy>();
+    private void Start() {
+        if (onPlayerDetected == null) {
+            onPlayerDetected = new BoolEvent();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            attachedEnemy.foundPlayer();
+            onPlayerDetected.Invoke(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            attachedEnemy.lostPlayer();
+            onPlayerDetected.Invoke(false);
         }
     }
 }
