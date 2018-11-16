@@ -13,9 +13,13 @@ public class EnemyController : MonoBehaviour {
     private Vector3 playerPos = Vector3.zero;
     private Quaternion targetRotation = new Quaternion(); /* Rotation to turn towards the player */
 
-    [SerializeField] new Rigidbody2D rigidbody2D; /* Rigidbody component */
+    new Rigidbody2D rigidbody2D; /* Rigidbody component */
 
     private Vector2 ref_velocity = Vector2.zero;
+
+    private void Start() {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+    }
 
     private void Rotate() {
         /* Debugging line */

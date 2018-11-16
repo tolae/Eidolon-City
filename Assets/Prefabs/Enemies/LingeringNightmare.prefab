@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114855399088025746}
   - component: {fileID: 114730782241548756}
   - component: {fileID: 114539114621559276}
+  - component: {fileID: 114996874463405586}
   m_Layer: 10
   m_Name: LingeringNightmare
   m_TagString: Killable
@@ -290,11 +291,8 @@ MonoBehaviour:
   damage: 50
   attackSpeed: 2
   world: {fileID: 0}
-  rigidbody: {fileID: 50565611655415626}
-  controller: {fileID: 114730782241548756}
-  animator: {fileID: 95859540065535660}
-  renderer: {fileID: 212110768122197660}
   capturable: {fileID: 1409882218671266, guid: 67cef445dc4b26449a5e0dbf70f53860, type: 2}
+  tendencyList: 0000000001000000
 --- !u!114 &114730782241548756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,7 +306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement_smoothing: 0.05
   directional: {fileID: 4720699685415706}
-  rigidbody2D: {fileID: 50565611655415626}
 --- !u!114 &114855399088025746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,6 +317,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd107043c7800f6429415639ee052319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114996874463405586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1391897116147846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067fd41a8e2588e429a37722f23b73cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tendencyEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114539114621559276}
+        m_MethodName: OnTendencyTrigger
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Tendency+TendencyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  type_pair: 0100000000000000
 --- !u!212 &212110768122197660
 SpriteRenderer:
   m_ObjectHideFlags: 1

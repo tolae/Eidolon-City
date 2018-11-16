@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BasicEnemy : MonoBehaviour, Destroyable {
+public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     /* Params Specific to this enemy */
     [SerializeField] float health;
     [SerializeField] float speed;
@@ -14,11 +14,14 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
 
     public World world;
 
-    [SerializeField] new Rigidbody2D rigidbody;
-    [SerializeField] EnemyController controller; /* Controls the enemies basic movement */
-    [SerializeField] Animator animator; /* Selects which animation to be playing at what time */
-    [SerializeField] new SpriteRenderer renderer; /* Used to change the color when hit */
+    new Rigidbody2D rigidbody;
+    EnemyController controller; /* Controls the enemies basic movement */
+    Animator animator; /* Selects which animation to be playing at what time */
+    new SpriteRenderer renderer; /* Used to change the color when hit */
     [SerializeField] GameObject capturable;
+
+    /* Tendencies of this enemy */
+    public List<Tendency.Tendency_Type> tendencyList;
 
     public IEnumerator TakeDamage(Vector2 directional, float damage) {
         health -= damage;
@@ -41,6 +44,11 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
 
     protected virtual void Start() {
         capturable.GetComponent<Capturable>().world = world;
+
+        rigidbody = GetComponent<Rigidbody2D>();
+        controller = GetComponent<EnemyController>();
+        animator = GetComponent<Animator>();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     protected virtual void FixedUpdate() {
@@ -63,4 +71,6 @@ public class BasicEnemy : MonoBehaviour, Destroyable {
             }
         }
     }
+
+    public abstract void OnTendencyTrigger(Tendency.Tendency_Type type);
 }

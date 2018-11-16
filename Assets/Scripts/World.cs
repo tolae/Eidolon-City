@@ -28,11 +28,7 @@ public class World : MonoBehaviour {
         /* Creates an enemy as a child of this object */
         enemy = Instantiate(enemy, new Vector3(-10, 0, 0), Quaternion.identity, transform);
         enemy.world = game.world;
-        enemy = Instantiate(enemy, new Vector3(-10, 20, 0), Quaternion.identity, transform);
-        enemy.world = game.world;
-        enemy = Instantiate(enemy, new Vector3(-10, 10, 0), Quaternion.identity, transform);
-        enemy.world = game.world;
-        enemy = Instantiate(enemy, new Vector3(-15, 30, 0), Quaternion.identity, transform);
+        enemy = Instantiate(enemy, new Vector3(-20, 0, 0), Quaternion.identity, transform);
         enemy.world = game.world;
         enemyList.Add(enemy);
 

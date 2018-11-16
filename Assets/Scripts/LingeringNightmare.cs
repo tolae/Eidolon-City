@@ -4,24 +4,36 @@ using UnityEngine;
 
 public class LingeringNightmare : BasicEnemy {
 
-    private int hivemindDetect = 0;
+    private const string NAME = "LingeringNightmare";
 
     new public void IsPlayerFound(bool isFound) {
         base.IsPlayerFound(isFound);
 
-        world.BroadcastMessage("HivemindTendency", isFound);
+        world.BroadcastMessage("HivemindTendency", new Hivemind.HivemindParameter(gameObject.name, isFound));
     }
 
-    private void HivemindTendency(bool trigger) {
-        if (trigger) {
-            hivemindDetect++;
-        } else {
-            hivemindDetect--;
-        }
+    new void Start() {
+        base.Start();
+        name = NAME;
     }
 
     new void FixedUpdate() {
-        base.IsPlayerFound(hivemindDetect > 0);
         base.FixedUpdate();
+    }
+
+    public override void OnTendencyTrigger(Tendency.Tendency_Type type) {
+        if (tendencyList.Contains(type)) {
+            switch (type) {
+                case Tendency.Tendency_Type.HIVEMIND_ON:
+                    base.IsPlayerFound(true);
+                    break;
+                case Tendency.Tendency_Type.HIVEMIND_OFF:
+                    base.IsPlayerFound(false);
+                    break;
+                default:
+                    Debug.LogError("Invalid tendency type: " + type);
+                    break;
+            }
+        }
     }
 }
