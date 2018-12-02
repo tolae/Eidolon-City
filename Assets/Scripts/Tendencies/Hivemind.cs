@@ -2,10 +2,11 @@
 
 public class Hivemind : Tendency {
 
+    Tendency_Type type = Tendency_Type.HIVEMIND;
     string hivemindName;
-    int hivemindCount;
+    static int hivemindCount;
 
-    public class HivemindParameter {
+    public class HivemindParameter : ITendencyParameter {
         public string name;
         public bool found;
 
@@ -17,20 +18,24 @@ public class Hivemind : Tendency {
 
     void Start() {
         hivemindName = gameObject.name;
-        hivemindCount = 0;
     }
 
     void FixedUpdate() {
-        if (hivemindCount > 0) { tendencyEvent.Invoke(type_pair[1]); }
+        if (hivemindCount > 0) { tendencyEvent.Invoke(type, true, null); }
     }
 
     void HivemindTendency(HivemindParameter parameter) {
         if (string.Compare(hivemindName, parameter.name, true) == 0 && parameter.found) {
             hivemindCount++;
-            tendencyEvent.Invoke(type_pair[1]);
+            tendencyEvent.Invoke(type, true, parameter);
         } else if (!parameter.found) {
             hivemindCount--;
-            tendencyEvent.Invoke(type_pair[0]);
+            tendencyEvent.Invoke(type, false, parameter);
         }
+    }
+
+    override
+    public bool IsActive() {
+        return hivemindCount > 0;
     }
 }

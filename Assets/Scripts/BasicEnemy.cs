@@ -72,5 +72,5 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
         }
     }
 
-    public abstract void OnTendencyTrigger(Tendency.Tendency_Type type);
+    public abstract void OnTendencyTrigger(Tendency.Tendency_Type type, bool isFound, Tendency.ITendencyParameter param);
 }
