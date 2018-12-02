@@ -3443,7 +3443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game: {fileID: 188900143}
   player: {fileID: 114853948915411096, guid: 4194374c89c20da4197a1434052d457c, type: 2}
-  enemy: {fileID: 114539114621559276, guid: e2b3a39e5facb384c9bc34c1b323a9d4, type: 2}
+  enemy: {fileID: 114447221479640292, guid: 2f4b88d8c0df9ab498121553de72183e, type: 2}
   basicEnemies: []
   spawnLocation: {fileID: 1325652177}
 --- !u!4 &681956834

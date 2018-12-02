@@ -10,6 +10,7 @@ public abstract class Tendency : MonoBehaviour {
 
     public enum Tendency_Type {
         HIVEMIND,
+        SPAWNER,
     }
 
     public abstract bool IsActive();

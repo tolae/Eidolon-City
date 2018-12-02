@@ -2,7 +2,7 @@
 
 public class Hivemind : Tendency {
 
-    Tendency_Type type = Tendency_Type.HIVEMIND;
+    const Tendency_Type type = Tendency_Type.HIVEMIND;
     string hivemindName;
     static int hivemindCount;
 

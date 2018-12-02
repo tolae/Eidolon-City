@@ -21,16 +21,12 @@ public class LingeringNightmare : BasicEnemy {
         base.FixedUpdate();
     }
 
-    public override void OnTendencyTrigger(Tendency.Tendency_Type type, bool isFound, Tendency.ITendencyParameter param) {
-        if (tendencyList.Contains(type)) {
-            switch (type) {
-                case Tendency.Tendency_Type.HIVEMIND:
-                    base.IsPlayerFound(isFound);
-                    break;
-                default:
-                    Debug.LogError("Invalid tendency type: " + type);
-                    break;
-            }
-        }
+    public override void HivemindTrigger(bool isFound,
+        Hivemind.HivemindParameter param) {
+        base.IsPlayerFound(isFound);
+    }
+
+    public override void SpawnerTrigger(Spawner.SpawnerParameter param) {
+        throw new System.NotImplementedException();
     }
 }

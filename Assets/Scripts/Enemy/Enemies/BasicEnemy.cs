@@ -72,5 +72,25 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
         }
     }
 
-    public abstract void OnTendencyTrigger(Tendency.Tendency_Type type, bool isFound, Tendency.ITendencyParameter param);
+    public void OnTendencyTrigger(Tendency.Tendency_Type type, 
+        bool trigger, Tendency.ITendencyParameter param) {
+        if (tendencyList.Contains(type)) {
+            switch (type) {
+                case Tendency.Tendency_Type.HIVEMIND:
+                    HivemindTrigger(trigger, (Hivemind.HivemindParameter) param);
+                    break;
+                case Tendency.Tendency_Type.SPAWNER:
+                    SpawnerTrigger((Spawner.SpawnerParameter) param);
+                    break;
+                default:
+                    Debug.LogError("Invalid tendency type: " + type);
+                    break;
+            }
+        }
+    }
+
+    public abstract void HivemindTrigger(bool isFound,
+        Hivemind.HivemindParameter param);
+
+    public abstract void SpawnerTrigger(Spawner.SpawnerParameter param);
 }
