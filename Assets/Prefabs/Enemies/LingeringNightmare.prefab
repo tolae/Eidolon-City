@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 4147493597026868}
   - component: {fileID: 58066741300285948}
   - component: {fileID: 114248769530148236}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: Range Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 4196436591960466}
   - component: {fileID: 58456926567326366}
   - component: {fileID: 114497043365294424}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: Attack Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

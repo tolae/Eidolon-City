@@ -37,4 +37,13 @@ public class MobMentality : Tendency {
     public override bool IsActive() {
         return true;
     }
+
+    private void RemoveObjectRef(GameObject remove) {
+        if (mobFriend != null) {
+            if (mobFriend.Equals(remove)) {
+                mobFriend = null;
+                isMobFound = false;
+            }
+        }
+    }
 }

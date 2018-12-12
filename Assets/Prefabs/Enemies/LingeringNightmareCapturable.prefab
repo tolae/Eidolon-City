@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52996749a226b44587f0e3d4b432eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 50
   currTime: 0
   deadTime: 5
   world: {fileID: 0}

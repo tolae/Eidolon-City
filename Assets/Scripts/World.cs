@@ -38,10 +38,13 @@ public class World : MonoBehaviour {
 
     public void Clean() {
         foreach (BasicEnemy be in enemyList) {
-            be.world = null;
             Destroy(be);
         }
 
         enemyList.Clear();
+    }
+
+    public void CleanObject(GameObject remove) {
+        this.BroadcastMessage("RemoveObjectRef", remove);
     }
 }

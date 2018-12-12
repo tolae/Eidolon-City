@@ -27,6 +27,7 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
         if (health <= 0) {
             GameObject inst = Instantiate(capturable, transform.position, Quaternion.identity);
             inst.GetComponent<Capturable>().gameController = world.game;
+            world.CleanObject(gameObject);
             Destroy(gameObject);
         } else {
             //TODO change to animation
@@ -35,10 +36,6 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
         }
 
         yield return null;
-    }
-
-    public virtual void IsPlayerFound(bool isFound, GameObject unused) {
-        playerFound = isFound;
     }
 
     protected virtual void Start() {
@@ -55,6 +52,10 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
         if (attackTimeStart == -1) {
             attackTimeStart = Time.time;
         }
+    }
+
+    public virtual void IsPlayerFound(bool isFound, GameObject unused) {
+        playerFound = isFound;
     }
 
     public virtual void OnAttackTrigger(bool unused, GameObject attacked) {

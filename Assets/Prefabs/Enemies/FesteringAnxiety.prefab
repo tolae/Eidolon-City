@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4377835927846188}
   - component: {fileID: 58462987392060312}
   - component: {fileID: 114423231376688210}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: Mob Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 4914775852298390}
   - component: {fileID: 58964238362667872}
   - component: {fileID: 114881722618107250}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: Range Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

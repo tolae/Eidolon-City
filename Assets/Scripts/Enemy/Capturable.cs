@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Capturable : MonoBehaviour {
 
+    [SerializeField] private int points = 0;
     [SerializeField] private float currTime = 0;
     [SerializeField] private float deadTime = 5;
 
@@ -17,7 +18,7 @@ public class Capturable : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            gameController.Captured(1000);
+            gameController.Captured(points);
             Destroy(gameObject);
         }
     }
