@@ -83,6 +83,9 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
                 case Tendency.Tendency_Type.MOB_MENTALITY:
                     MobMentalityTrigger(trigger, (MobMentality.MobMentalityParameter) param);
                     break;
+                case Tendency.Tendency_Type.HORROR:
+                    HorrorTrigger(trigger, (Horror.HorrorParameter) param);
+                    break;
                 default:
                     Debug.LogError("Invalid tendency type: " + type);
                     break;
@@ -97,4 +100,7 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
 
     public abstract void MobMentalityTrigger(bool isFound,
         MobMentality.MobMentalityParameter param);
+
+    public abstract void HorrorTrigger(bool isFound,
+        Horror.HorrorParameter param);
 }

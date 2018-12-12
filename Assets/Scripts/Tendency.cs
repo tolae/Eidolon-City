@@ -12,6 +12,7 @@ public abstract class Tendency : MonoBehaviour {
         HIVEMIND,
         SPAWNER,
         MOB_MENTALITY,
+        HORROR,
     }
 
     public abstract bool IsActive();

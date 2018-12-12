@@ -28,4 +28,8 @@ public class LingeringNightmare : BasicEnemy {
     public override void MobMentalityTrigger(bool isFound, MobMentality.MobMentalityParameter param) {
         throw new System.NotImplementedException();
     }
+
+    public override void HorrorTrigger(bool isFound, Horror.HorrorParameter param) {
+        throw new System.NotImplementedException();
+    }
 }

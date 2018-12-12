@@ -21,7 +21,7 @@ public class Hivemind : Tendency {
     }
 
     void FixedUpdate() {
-        if (hivemindCount > 0) { tendencyEvent.Invoke(type, true, null); }
+        if (IsActive()) { tendencyEvent.Invoke(type, true, null); }
     }
 
     void HivemindTendency(HivemindParameter parameter) {
