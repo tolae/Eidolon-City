@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour, IEnemyController {
 
     [Range(0, 0.3f)] [SerializeField] private float movement_smoothing = 0.05f; /* How much the movement should be smoothed */
     [SerializeField] private Transform directional;

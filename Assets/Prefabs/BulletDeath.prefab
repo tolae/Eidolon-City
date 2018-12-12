@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 95941892316748842}
   - component: {fileID: 212819906480832864}
   - component: {fileID: 114286388571286980}
-  m_Layer: 1
+  m_Layer: 12
   m_Name: BulletDeath
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /**
  *  Bullet class handles aspect of the fired bullet.*
@@ -35,16 +33,14 @@ public class Bullet : MonoBehaviour {
      * and applies damage to it. It lets the object being hit handle        * 
      * its own damage                                                       */
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Killable")) {
-            Dead(true); /* Kill the bullet, no multi-hits */
+        Dead(true); /* Kill the bullet, no multi-hits */
 
-            /* Locate destroyable, and apply damage if its found */
-            Destroyable destroyable = collision.GetComponent<Destroyable>();
-            if (destroyable != null) {
-                StartCoroutine(
-                    destroyable
-                        .TakeDamage(rigidbody2D.velocity.normalized, damage));
-            }
+        /* Locate destroyable, and apply damage if its found */
+        Destroyable destroyable = collision.GetComponent<Destroyable>();
+        if (destroyable != null) {
+            StartCoroutine(
+                destroyable
+                    .TakeDamage(rigidbody2D.velocity.normalized, damage));
         }
     }
 

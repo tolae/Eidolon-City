@@ -11,23 +11,6 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1613019239812458}
   m_IsPrefabAsset: 1
---- !u!1 &1089106555850472
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4613488924202370}
-  - component: {fileID: 58847268629592072}
-  - component: {fileID: 114638691708175520}
-  m_Layer: 10
-  m_Name: Attack Detection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1613019239812458
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,9 +27,27 @@ GameObject:
   - component: {fileID: 114258441032950132}
   - component: {fileID: 114447221479640292}
   - component: {fileID: 114194855035056492}
+  - component: {fileID: 114668380542525086}
   m_Layer: 10
   m_Name: FesteringAnxiety
-  m_TagString: Killable
+  m_TagString: FesteringAnxiety
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1613854750770948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4377835927846188}
+  - component: {fileID: 58462987392060312}
+  - component: {fileID: 114423231376688210}
+  m_Layer: 10
+  m_Name: Mob Detection
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +97,19 @@ Transform:
   m_Father: {fileID: 4546229402701324}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4377835927846188
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613854750770948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4546229402701324}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4546229402701324
 Transform:
   m_ObjectHideFlags: 1
@@ -103,27 +117,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1613019239812458}
   m_LocalRotation: {x: -0, y: -0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -17.60342, y: 2.920106, z: 0}
+  m_LocalPosition: {x: -18.532015, y: 0.7004583, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4377835927846188}
   - {fileID: 4914775852298390}
-  - {fileID: 4613488924202370}
   - {fileID: 4155908854471146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4613488924202370
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089106555850472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4546229402701324}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4914775852298390
 Transform:
@@ -136,7 +137,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4546229402701324}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50305629990173338
 Rigidbody2D:
@@ -173,12 +174,12 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!58 &58847268629592072
+--- !u!58 &58462987392060312
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089106555850472}
+  m_GameObject: {fileID: 1613854750770948}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -187,7 +188,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.0001
+  m_Radius: 9
 --- !u!58 &58964238362667872
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -275,6 +276,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd107043c7800f6429415639ee052319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114423231376688210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613854750770948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba912c01e6f906849b3171e508e1bd31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTagDetection:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114668380542525086}
+        m_MethodName: IsMobFound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  tag: FesteringAnxiety
 --- !u!114 &114447221479640292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,23 +321,23 @@ MonoBehaviour:
   attackSpeed: 0
   world: {fileID: 0}
   capturable: {fileID: 1124803637595274, guid: 5980f757fb7ddd2489185a8bc9183bd6, type: 2}
-  tendencyList: 01000000
---- !u!114 &114638691708175520
+  tendencyList: 0100000002000000
+--- !u!114 &114668380542525086
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089106555850472}
+  m_GameObject: {fileID: 1613019239812458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b9adb25e379944ba9b80cb15245e55, type: 3}
+  m_Script: {fileID: 11500000, guid: 98700a1a4685d7d44ba84eb65e919b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTrigger:
+  tendencyEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114447221479640292}
-        m_MethodName: OnAttack
+        m_MethodName: OnTendencyTrigger
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -318,8 +347,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: AttackDetection+AttackTrigger, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: Tendency+TendencyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  slowdownFactor: -0.25
 --- !u!114 &114881722618107250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba912c01e6f906849b3171e508e1bd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayerDetected:
+  onTagDetection:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114447221479640292}
@@ -345,8 +375,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: RangeSensor+BoolEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  tag: Player
 --- !u!212 &212128430041468908
 SpriteRenderer:
   m_ObjectHideFlags: 1

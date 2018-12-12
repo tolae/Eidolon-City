@@ -1,23 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     /* Params Specific to this enemy */
-    [SerializeField] float health;
-    [SerializeField] float speed;
-    [SerializeField] float damage;
-    [SerializeField] float attackSpeed;
-    float attackTimeStart = 0;
-    bool playerFound = false;
+    [SerializeField] protected float health;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float damage;
+    [SerializeField] protected float attackSpeed;
+    protected float attackTimeStart = 0;
+    protected bool playerFound = false;
 
     public World world;
 
-    new Rigidbody2D rigidbody;
-    EnemyController controller; /* Controls the enemies basic movement */
-    Animator animator; /* Selects which animation to be playing at what time */
-    new SpriteRenderer renderer; /* Used to change the color when hit */
+    protected new Rigidbody2D rigidbody;
+    protected EnemyController controller; /* Controls the enemies basic movement */
+    protected Animator animator; /* Selects which animation to be playing at what time */
+    protected new SpriteRenderer renderer; /* Used to change the color when hit */
     [SerializeField] GameObject capturable;
 
     /* Tendencies of this enemy */
@@ -38,7 +37,7 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
         yield return null;
     }
 
-    public virtual void IsPlayerFound(bool isFound) {
+    public virtual void IsPlayerFound(bool isFound, GameObject unused) {
         playerFound = isFound;
     }
 
@@ -58,17 +57,15 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
         }
     }
 
-    public virtual void OnAttack(Collider2D collider) {
-        if (collider.CompareTag("Player")) {
-            if (Time.time - (attackTimeStart + attackSpeed) >= 0) {
-                Vector2 directional = collider.transform.position - transform.position;
+    public virtual void OnAttackTrigger(bool unused, GameObject attacked) {
+        if (Time.time - (attackTimeStart + attackSpeed) >= 0) {
+            Vector2 directional = attacked.transform.position - transform.position;
 
-                StartCoroutine(
-                    collider.GetComponent<Destroyable>()
-                        .TakeDamage(directional.normalized, damage));
+            StartCoroutine(
+                attacked.GetComponent<Destroyable>()
+                    .TakeDamage(directional.normalized, damage));
 
-                attackTimeStart = -1;
-            }
+            attackTimeStart = -1;
         }
     }
 
@@ -82,6 +79,9 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
                 case Tendency.Tendency_Type.SPAWNER:
                     SpawnerTrigger((Spawner.SpawnerParameter) param);
                     break;
+                case Tendency.Tendency_Type.MOB_MENTALITY:
+                    MobMentalityTrigger(trigger, (MobMentality.MobMentalityParameter) param);
+                    break;
                 default:
                     Debug.LogError("Invalid tendency type: " + type);
                     break;
@@ -93,4 +93,7 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
         Hivemind.HivemindParameter param);
 
     public abstract void SpawnerTrigger(Spawner.SpawnerParameter param);
+
+    public abstract void MobMentalityTrigger(bool isFound,
+        MobMentality.MobMentalityParameter param);
 }

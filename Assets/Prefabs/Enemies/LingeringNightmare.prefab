@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114996874463405586}
   m_Layer: 10
   m_Name: LingeringNightmare
-  m_TagString: Killable
+  m_TagString: LingeringNightmare
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4196436591960466}
   - component: {fileID: 58456926567326366}
-  - component: {fileID: 114328209833035316}
+  - component: {fileID: 114497043365294424}
   m_Layer: 10
   m_Name: Attack Detection
   m_TagString: Untagged
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba912c01e6f906849b3171e508e1bd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayerDetected:
+  onTagDetection:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114539114621559276}
@@ -246,9 +246,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: RangeSensor+BoolEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
---- !u!114 &114328209833035316
+  tag: Player
+--- !u!114 &114497043365294424
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,14 +257,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1677522556593808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b9adb25e379944ba9b80cb15245e55, type: 3}
+  m_Script: {fileID: 11500000, guid: ba912c01e6f906849b3171e508e1bd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTrigger:
+  onTagDetection:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114539114621559276}
-        m_MethodName: OnAttack
+        m_MethodName: OnAttackTrigger
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -273,8 +274,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: AttackDetection+AttackTrigger, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  tag: Player
 --- !u!114 &114539114621559276
 MonoBehaviour:
   m_ObjectHideFlags: 1

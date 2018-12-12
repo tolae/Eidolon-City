@@ -17,7 +17,7 @@ public class Hivemind : Tendency {
     }
 
     void Start() {
-        hivemindName = gameObject.name;
+        hivemindName = gameObject.tag;
     }
 
     void FixedUpdate() {

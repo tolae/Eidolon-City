@@ -1,20 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LingeringNightmare : BasicEnemy {
 
-    private const string NAME = "LingeringNightmare";
+    new public void IsPlayerFound(bool isFound, GameObject unused) {
+        base.IsPlayerFound(isFound, null);
 
-    new public void IsPlayerFound(bool isFound) {
-        base.IsPlayerFound(isFound);
-
-        world.BroadcastMessage("HivemindTendency", new Hivemind.HivemindParameter(gameObject.name, isFound));
+        world.BroadcastMessage("HivemindTendency", new Hivemind.HivemindParameter(gameObject.tag, isFound));
     }
 
     new void Start() {
         base.Start();
-        name = NAME;
     }
 
     new void FixedUpdate() {
@@ -23,10 +18,14 @@ public class LingeringNightmare : BasicEnemy {
 
     public override void HivemindTrigger(bool isFound,
         Hivemind.HivemindParameter param) {
-        base.IsPlayerFound(isFound);
+        base.IsPlayerFound(isFound, null);
     }
 
     public override void SpawnerTrigger(Spawner.SpawnerParameter param) {
+        throw new System.NotImplementedException();
+    }
+
+    public override void MobMentalityTrigger(bool isFound, MobMentality.MobMentalityParameter param) {
         throw new System.NotImplementedException();
     }
 }

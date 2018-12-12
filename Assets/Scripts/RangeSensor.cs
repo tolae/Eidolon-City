@@ -1,29 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class RangeSensor : MonoBehaviour {
 
     [System.Serializable]
-    public class BoolEvent : UnityEvent<bool> { }
-    public BoolEvent onPlayerDetected;
+    public class SensorEvent : UnityEvent<bool, GameObject> { }
+    public SensorEvent onTagDetection;
+    public new string tag;
 
     private void Start() {
-        if (onPlayerDetected == null) {
-            onPlayerDetected = new BoolEvent();
+        if (onTagDetection == null) {
+            onTagDetection = new SensorEvent();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Player")) {
-            onPlayerDetected.Invoke(true);
+    private void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.CompareTag(tag)) {
+            onTagDetection.Invoke(true, collider.gameObject);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.CompareTag("Player")) {
-            onPlayerDetected.Invoke(false);
+    private void OnTriggerExit2D(Collider2D collider) {
+        if (collider.CompareTag(tag)) {
+            onTagDetection.Invoke(false, collider.gameObject);
         }
     }
 }
