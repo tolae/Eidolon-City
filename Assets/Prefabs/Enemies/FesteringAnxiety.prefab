@@ -304,6 +304,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: FesteringAnxiety
+  isTrigger: 1
 --- !u!114 &114447221479640292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -378,6 +379,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: Player
+  isTrigger: 1
 --- !u!212 &212128430041468908
 SpriteRenderer:
   m_ObjectHideFlags: 1

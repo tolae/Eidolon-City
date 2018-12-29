@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114853948915411096}
   - component: {fileID: 114388172744361148}
   - component: {fileID: 114947349961372702}
+  - component: {fileID: 114358616538286004}
   m_Layer: 10
   m_Name: TestPlayerPrefab
   m_TagString: Player
@@ -129,6 +130,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114358616538286004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551924401159206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3fc5d000add6b4ab6d06e5ebd403c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114388172744361148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   speed: 5
+  currentSpeed: 0
   controller: {fileID: 114992496616832992}
   animator: {fileID: 95413741165624102}
   renderer: {fileID: 212019967165087084}

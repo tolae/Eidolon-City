@@ -7,6 +7,7 @@ public class RangeSensor : MonoBehaviour {
     public class SensorEvent : UnityEvent<bool, GameObject> { }
     public SensorEvent onTagDetection;
     public new string tag;
+    public bool isTrigger;
 
     private void Start() {
         if (onTagDetection == null) {
@@ -16,6 +17,12 @@ public class RangeSensor : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.CompareTag(tag)) {
+            onTagDetection.Invoke(true, collider.gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collider) {
+        if (!isTrigger && collider.CompareTag(tag)) {
             onTagDetection.Invoke(true, collider.gameObject);
         }
     }

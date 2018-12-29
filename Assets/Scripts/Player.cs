@@ -7,9 +7,10 @@ using UnityEngine;
  */
 public class Player : MonoBehaviour, Destroyable {
 
-    /*Player Fields*/
-    [SerializeField] private float health = 5; /* The number of hitpoints a player can take before death */
-    [SerializeField] private float speed = 10;  /* How fast the player moves */
+    /* Player Fields */
+    public float health = 5; /* The number of hitpoints a player can take before death */
+    public float speed = 10;  /* How fast the player moves */
+    [HideInInspector] public float currentSpeed;
     //[SerializeField] private float jumpSpeed = 15; /* How fast the player moves while jumping */
     private Vector2 movement; /* The directional of where the player wants to move */
     private bool jump; /* If the character hit to jump or not */
@@ -21,12 +22,18 @@ public class Player : MonoBehaviour, Destroyable {
     [SerializeField] private new Rigidbody2D rigidbody;
 
     /* Status */
+    private Dictionary<StatusHandler.Status, bool> statusDict;
     private bool canMove;
 
     private void Start() {
+        statusDict = new Dictionary<StatusHandler.Status, bool>();
+        foreach (StatusHandler.Status status in System.Enum.GetValues(typeof(StatusHandler.Status))) {
+            statusDict.Add(status, false);
+        }
         movement = new Vector2();
         jump = false;
         canMove = true;
+        currentSpeed = speed;
     }
 
     private void Update() {
@@ -38,7 +45,7 @@ public class Player : MonoBehaviour, Destroyable {
 
         animator.SetFloat("Speed", movement.magnitude);
 
-        movement *= speed;
+        movement *= currentSpeed;
     }
 
     private void FixedUpdate() {
@@ -80,5 +87,17 @@ public class Player : MonoBehaviour, Destroyable {
     public void SetCrosshair(Crosshair crosshair) {
         controller.crosshair = crosshair;
         weapon.crosshair = crosshair;
+    }
+
+    public void ApplyStatus(StatusHandler.Status status, StatusHandler.IStatusParameter param) {
+        if (!statusDict[status]) {
+            StatusHandler.instance.HandlePlayerStatus(true, this, status, param);
+            statusDict[status] = true;
+        }
+    }
+
+    public void RemoveStatus(StatusHandler.Status status) {
+        StatusHandler.instance.HandlePlayerStatus(false, this, status, null);
+        statusDict[status] = false;
     }
 }

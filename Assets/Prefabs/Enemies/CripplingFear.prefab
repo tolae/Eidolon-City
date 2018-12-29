@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 4634364205013810}
   - component: {fileID: 58305079136272654}
   - component: {fileID: 114920109590240374}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Horror Affliction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,6 +322,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: Player
+  isTrigger: 0
 --- !u!114 &114522845248281678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,6 +380,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: Player
+  isTrigger: 1
 --- !u!114 &114878861462085672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -420,6 +422,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: Player
+  isTrigger: 1
 --- !u!212 &212353882429366076
 SpriteRenderer:
   m_ObjectHideFlags: 1

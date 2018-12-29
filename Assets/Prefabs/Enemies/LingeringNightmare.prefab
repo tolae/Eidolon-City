@@ -249,6 +249,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: Player
+  isTrigger: 1
 --- !u!114 &114497043365294424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -277,6 +278,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: Player
+  isTrigger: 0
 --- !u!114 &114539114621559276
 MonoBehaviour:
   m_ObjectHideFlags: 1
