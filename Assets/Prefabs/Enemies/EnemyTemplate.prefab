@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 114511707517730108}
   m_Layer: 10
   m_Name: EnemyTemplate
-  m_TagString: LingeringNightmare
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,6 +247,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: Player
+  isTrigger: 0
 --- !u!114 &114412153994502770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,6 +300,7 @@ MonoBehaviour:
     m_TypeName: RangeSensor+SensorEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   tag: Player
+  isTrigger: 0
 --- !u!212 &212734532175158110
 SpriteRenderer:
   m_ObjectHideFlags: 1

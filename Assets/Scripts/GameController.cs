@@ -27,8 +27,6 @@ public class GameController : MonoBehaviour {
             world = Instantiate(world, transform.position, transform.rotation);
         }
 
-        dreamBar.setGame(this);
-
         crosshair = Instantiate(crosshair, world.transform);
 
         levelCounter = 1;

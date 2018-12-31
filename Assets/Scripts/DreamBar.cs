@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DreamBar : MonoBehaviour {
-
+    /* How full the bar is (not a percentage) */
     float fill;
+    /* The amount required to fill the bar */
     [SerializeField] float total = 2000;
-
-    private GameController game;
-
+    /* The visual of the bar */
     public Image image;
 
 	// Use this for initialization
@@ -20,13 +19,14 @@ public class DreamBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /* Calculates the percentage of the bar that should be full */
         image.fillAmount = fill / total;
 	}
-
+    /* Slowly fills the bar by the amount given */
     public void Fill(float amount) {
         StartCoroutine(BeginFilling(amount));
     }
-
+    /* Method that fills the bar slowly versus instantly. */
     private IEnumerator BeginFilling(float amount) {
         amount += fill;
         while (fill != amount) {
@@ -34,10 +34,6 @@ public class DreamBar : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
 
-        game.Full(fill >= total);
-    }
-
-    public void setGame(GameController currentGame) {
-        game = currentGame;
+        GameController.instance.Full(fill >= total);
     }
 }

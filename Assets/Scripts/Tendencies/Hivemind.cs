@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 
 public class Hivemind : Tendency {
-
+    /* Type this tendency is */
     const Tendency_Type type = Tendency_Type.HIVEMIND;
+    /* The name of the hivemind where information is shared */
     string hivemindName;
+    /* How many people are currently triggering the hivemind */
     static int hivemindCount;
 
+    /* The hivemind parameter */
     public class HivemindParameter : ITendencyParameter {
+        /* The name of the hivemind */
         public string name;
+        /* Whether this object found the target */
         public bool found;
 
         public HivemindParameter(string name, bool found) {
@@ -23,12 +28,15 @@ public class Hivemind : Tendency {
     void FixedUpdate() {
         if (IsActive()) { tendencyEvent.Invoke(type, true, null); }
     }
-
+    /* The hivemind tendency callback function */
     void HivemindTendency(HivemindParameter parameter) {
+        /* If both objects are in the same hivemind and the target object is in view */
         if (string.Compare(hivemindName, parameter.name, true) == 0 && parameter.found) {
             hivemindCount++;
             tendencyEvent.Invoke(type, true, parameter);
-        } else if (!parameter.found) {
+        } 
+        /* If the target object left view of one of the hivemind members */
+        else if (!parameter.found) {
             hivemindCount--;
             tendencyEvent.Invoke(type, false, parameter);
         }
