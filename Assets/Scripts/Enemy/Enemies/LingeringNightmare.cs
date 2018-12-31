@@ -5,7 +5,8 @@ public class LingeringNightmare : BasicEnemy {
     new public void IsPlayerFound(bool isFound, GameObject unused) {
         base.IsPlayerFound(isFound, null);
 
-        world.BroadcastMessage("HivemindTendency", new Hivemind.HivemindParameter(gameObject.tag, isFound));
+        GameController.instance.world.BroadcastMessage("HivemindTendency",
+            new Hivemind.HivemindParameter(gameObject.tag, isFound));
     }
 
     new void Start() {
@@ -25,11 +26,13 @@ public class LingeringNightmare : BasicEnemy {
         throw new System.NotImplementedException();
     }
 
-    public override void MobMentalityTrigger(bool isFound, MobMentality.MobMentalityParameter param) {
+    public override void MobMentalityTrigger(bool isFound,
+        MobMentality.MobMentalityParameter param) {
         throw new System.NotImplementedException();
     }
 
-    public override void HorrorTrigger(bool isFound, Horror.HorrorParameter param) {
+    public override void HorrorTrigger(bool isFound,
+        Horror.HorrorParameter param) {
         throw new System.NotImplementedException();
     }
 }

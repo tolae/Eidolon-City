@@ -8,17 +8,11 @@ public class Capturable : MonoBehaviour {
     [SerializeField] private float currTime = 0;
     [SerializeField] private float deadTime = 5;
 
-    public World world;
-    public GameController gameController;
     public GameObject original;
-
-    private void Start() {
-        original.GetComponent<BasicEnemy>().world = world;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            gameController.Captured(points);
+            GameController.instance.Captured(points);
             Destroy(gameObject);
         }
     }
@@ -27,7 +21,8 @@ public class Capturable : MonoBehaviour {
         if (currTime >= deadTime) {
             Destroy(gameObject);
             if (original != null) {
-                Instantiate(original, transform.position, Quaternion.identity, world.transform);
+                Instantiate(original, transform.position, Quaternion.identity,
+                    GameController.instance.world.transform);
             }
         }
 

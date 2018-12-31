@@ -64,7 +64,7 @@ public class Player : MonoBehaviour, Destroyable {
         rigidbody.AddForce(5000 * directional);
 
         if (health <= 0) {
-            GameObject.Find("GameController").GetComponent<GameController>().PlayerDead(true);
+            GameController.instance.PlayerDead(true);
             Destroy(gameObject);
         } else {
             //TODO change animation
@@ -84,20 +84,15 @@ public class Player : MonoBehaviour, Destroyable {
             jump = false;
     }
 
-    public void SetCrosshair(Crosshair crosshair) {
-        controller.crosshair = crosshair;
-        weapon.crosshair = crosshair;
-    }
-
     public void ApplyStatus(StatusHandler.Status status, StatusHandler.IStatusParameter param) {
         if (!statusDict[status]) {
-            StatusHandler.instance.HandlePlayerStatus(true, this, status, param);
+            StatusHandler.instance.HandlePlayerStatus(true, status, param);
             statusDict[status] = true;
         }
     }
 
     public void RemoveStatus(StatusHandler.Status status) {
-        StatusHandler.instance.HandlePlayerStatus(false, this, status, null);
+        StatusHandler.instance.HandlePlayerStatus(false, status, null);
         statusDict[status] = false;
     }
 }

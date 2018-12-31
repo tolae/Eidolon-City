@@ -27,8 +27,6 @@ public class GameController : MonoBehaviour {
             world = Instantiate(world, transform.position, transform.rotation);
         }
 
-        world.game = instance;
-
         dreamBar.setGame(this);
 
         crosshair = Instantiate(crosshair, world.transform);
@@ -52,7 +50,7 @@ public class GameController : MonoBehaviour {
     public void PlayerDead(bool isDead) {
         if (isDead) {
             world.Clean();
-            world.player = null;
+            world.currentPlayer = null;
             SceneManager.LoadScene("LoseScene", LoadSceneMode.Single);
         }
     }

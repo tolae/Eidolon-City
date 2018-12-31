@@ -7,9 +7,11 @@ public class CripplingFear : BasicEnemy {
     public override void HorrorTrigger(bool isFound, Horror.HorrorParameter param) {
         /* Play scary sounds of aggression */
         if (isFound) {
-            world.player.ApplyStatus(StatusHandler.Status.SLOW, new SlowStatus.SlowParameter(param.slowdown));
+            GameController.instance.world.currentPlayer.ApplyStatus(
+                StatusHandler.Status.SLOW, 
+                new SlowStatus.SlowParameter(param.slowdown));
         } else {
-            world.player.RemoveStatus(StatusHandler.Status.SLOW);
+            GameController.instance.world.currentPlayer.RemoveStatus(StatusHandler.Status.SLOW);
         }
     }
 

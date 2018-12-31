@@ -11,8 +11,6 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     protected float attackTimeStart = 0;
     protected bool playerFound = false;
 
-    public World world;
-
     protected new Rigidbody2D rigidbody;
     protected EnemyController controller; /* Controls the enemies basic movement */
     protected Animator animator; /* Selects which animation to be playing at what time */
@@ -25,9 +23,9 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     public IEnumerator TakeDamage(Vector2 directional, float damage) {
         health -= damage;
         if (health <= 0) {
-            GameObject inst = Instantiate(capturable, transform.position, Quaternion.identity);
-            inst.GetComponent<Capturable>().gameController = world.game;
-            world.CleanObject(gameObject);
+            Instantiate(capturable, transform.position,
+                Quaternion.identity, GameController.instance.world.transform);
+            GameController.instance.world.CleanObject(gameObject);
             Destroy(gameObject);
         } else {
             //TODO change to animation
@@ -39,8 +37,6 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     }
 
     protected virtual void Start() {
-        capturable.GetComponent<Capturable>().world = world;
-
         rigidbody = GetComponent<Rigidbody2D>();
         controller = GetComponent<EnemyController>();
         animator = GetComponent<Animator>();
@@ -48,7 +44,9 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     }
 
     protected virtual void FixedUpdate() {
-        StartCoroutine(controller.Move(world.player.transform.position, speed, playerFound));
+        StartCoroutine(controller.Move(
+            GameController.instance.world.currentPlayer.transform.position, 
+            speed, playerFound));
         if (attackTimeStart == -1) {
             attackTimeStart = Time.time;
         }

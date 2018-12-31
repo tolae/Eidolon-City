@@ -12,12 +12,14 @@ public class SlowStatus : MonoBehaviour {
         }
     }
 
-    public static void ApplySlow(Player player, SlowParameter param) {
-        player.currentSpeed = player.speed * param.amount;
+    public static void ApplySlow(SlowParameter param) {
+        GameController.instance.world.currentPlayer.currentSpeed = 
+            GameController.instance.world.currentPlayer.speed * param.amount;
     }
 
-    public static void RemoveSlow(Player player) {
-        player.currentSpeed = player.speed;
+    public static void RemoveSlow() {
+        GameController.instance.world.currentPlayer.currentSpeed = 
+            GameController.instance.world.currentPlayer.speed;
     }
 
 }

@@ -17,7 +17,7 @@ public class Horror : Tendency {
         }
     }
 
-    public void IsPlayerFound(bool isFound, GameObject player) {
+    public void IsPlayerFound(bool isFound) {
         playerFound = isFound;
         tendencyEvent.Invoke(type, isFound, new HorrorParameter(slowdown));
     }

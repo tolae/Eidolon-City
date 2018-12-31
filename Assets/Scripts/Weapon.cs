@@ -7,7 +7,6 @@ public class Weapon : MonoBehaviour {
 
     [SerializeField] private Transform bulletPointForward; /* Forward position for the bullet to be fired. */
     public Bullet bullet; /* Bullet prefab that gets fired for this weapon */
-    public Crosshair crosshair; /* Crosshair of the world */
     public UnityEvent shootEvent; /* Notifies all that player is shooting */
 
     private void Awake() {

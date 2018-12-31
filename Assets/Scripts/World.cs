@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /**
  * Container for the world of the player */
 public class World : MonoBehaviour {
 
-    public GameController game; /* Current game session */
-    public Player player; /* Current player */
+    public Player player;
+    [HideInInspector] public Player currentPlayer; /* Current player */
     public BasicEnemy enemy; /* The enemy to be created */
     public List<BasicEnemy> basicEnemies; /* Basic enemies in the world */
     public Transform spawnLocation; /* Spawn location for the player */
@@ -20,20 +19,15 @@ public class World : MonoBehaviour {
 
     private void Start() {
         /* Creates the player as a child of this object */
-        player = Instantiate(player, spawnLocation.position, spawnLocation.rotation, transform);
-
-        /* Sets the players crosshairs */
-        player.SetCrosshair(game.crosshair);
+        currentPlayer = Instantiate(player, spawnLocation.position, spawnLocation.rotation, transform);
 
         /* Creates an enemy as a child of this object */
         enemy = Instantiate(enemy, new Vector3(-10, 0, 0), Quaternion.identity, transform);
-        enemy.world = game.world;
         enemy = Instantiate(enemy, new Vector3(-20, 0, 0), Quaternion.identity, transform);
-        enemy.world = game.world;
         enemyList.Add(enemy);
 
         /* Set the Virutal Camera to follow the player */
-        game.vCam.Follow = player.transform;
+        GameController.instance.vCam.Follow = currentPlayer.transform;
     }
 
     public void Clean() {

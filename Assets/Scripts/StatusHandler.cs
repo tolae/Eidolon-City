@@ -14,14 +14,14 @@ public class StatusHandler : MonoBehaviour {
 
     public interface IStatusParameter { };
 
-    public void HandlePlayerStatus(bool trigger, Player player, Status status, IStatusParameter param) {
+    public void HandlePlayerStatus(bool trigger, Status status, IStatusParameter param) {
         Debug.Log(status.ToString() + " : " + trigger);
         switch (status) {
             case Status.SLOW:
                 if (trigger)
-                    SlowStatus.ApplySlow(player, (SlowStatus.SlowParameter)param);
+                    SlowStatus.ApplySlow((SlowStatus.SlowParameter)param);
                 else
-                    SlowStatus.RemoveSlow(player);
+                    SlowStatus.RemoveSlow();
                 break;
             case Status.STUN:
                 break;

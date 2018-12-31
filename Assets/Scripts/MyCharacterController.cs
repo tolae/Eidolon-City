@@ -19,7 +19,6 @@ public class MyCharacterController : MonoBehaviour {
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
     public BoolEvent onJumpEvent; /* For when the player jumps up from the land */
-    public Crosshair crosshair; /* The crosshair of the current world */
 
     private void Awake() {
         /* Instantiates components */
@@ -37,9 +36,9 @@ public class MyCharacterController : MonoBehaviour {
     /* Might move this to the weapon class as that doesnt have visuals */
     private void Rotate() {
         /* Debugging line */
-        Debug.DrawLine(transform.position, crosshair.transform.position, Color.black, Time.deltaTime);
+        Debug.DrawLine(transform.position, GameController.instance.crosshair.transform.position, Color.black, Time.deltaTime);
         /* Vector to the crosshair from the players position */
-        toCrosshair = crosshair.transform.position - transform.position;
+        toCrosshair = GameController.instance.crosshair.transform.position - transform.position;
         /* Angle at which this vector creates with the +x-axis */
         float angle = Vector3.Dot(toCrosshair, Vector3.right);
         angle = angle / (toCrosshair.magnitude * Vector3.right.magnitude);
