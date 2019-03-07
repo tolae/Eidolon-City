@@ -14,9 +14,15 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     public World world;
 
     protected new Rigidbody2D rigidbody;
-    protected EnemyController controller; /* Controls the enemies basic movement */
-    protected Animator animator; /* Selects which animation to be playing at what time */
-    protected new SpriteRenderer renderer; /* Used to change the color when hit */
+    
+    /* Controls the enemies basic movement */
+    protected EnemyController controller;
+
+    /* Selects which animation to be playing at what time */
+    protected Animator animator;
+
+    /* Used to change the color when hit */
+    protected new SpriteRenderer renderer;
     [SerializeField] GameObject capturable;
 
     /* Tendencies of this enemy */
@@ -25,7 +31,11 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     public IEnumerator TakeDamage(Vector2 directional, float damage) {
         health -= damage;
         if (health <= 0) {
-            GameObject inst = Instantiate(capturable, transform.position, Quaternion.identity);
+            GameObject inst = Instantiate(
+                capturable,
+                transform.position,
+                Quaternion.identity
+                );
             inst.GetComponent<Capturable>().gameController = world.game;
             world.CleanObject(gameObject);
             Destroy(gameObject);
@@ -48,7 +58,11 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
     }
 
     protected virtual void FixedUpdate() {
-        StartCoroutine(controller.Move(world.player.transform.position, speed, playerFound));
+        StartCoroutine(controller.Move(
+            world.player.transform.position,
+            speed,
+            playerFound
+            ));
         if (attackTimeStart == -1) {
             attackTimeStart = Time.time;
         }
@@ -60,7 +74,8 @@ public abstract class BasicEnemy : MonoBehaviour, Destroyable {
 
     public virtual void OnAttackTrigger(bool unused, GameObject attacked) {
         if (Time.time - (attackTimeStart + attackSpeed) >= 0) {
-            Vector2 directional = attacked.transform.position - transform.position;
+            Vector2 directional = 
+                attacked.transform.position - transform.position;
 
             StartCoroutine(
                 attacked.GetComponent<Destroyable>()

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class FesteringAnxiety : BasicEnemy {
+
     public override void SpawnerTrigger(Spawner.SpawnerParameter param) {
         param.spawn.GetComponent<BasicEnemy>().world = world;
         Instantiate(param.spawn, transform.position, Quaternion.identity, world.transform);

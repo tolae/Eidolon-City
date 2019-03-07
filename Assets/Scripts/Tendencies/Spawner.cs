@@ -7,7 +7,8 @@ public class Spawner : Tendency {
     public GameObject spawning;
     public float minSpawningTime;
     public float maxSpawningTime;
-
+    public int maxSpawn;
+    int currSpawn = 0;
     float timeNext = -1;
     float timePrevious = 0;
     const Tendency_Type type = Tendency_Type.SPAWNER;
@@ -36,15 +37,21 @@ public class Spawner : Tendency {
 
         timePrevious += Time.deltaTime;
 
-        if (timePrevious >= timeNext) {
-            tendencyEvent.Invoke(type, true, new SpawnerParameter(spawning));
-            timeNext = Random.Range(minSpawningTime, maxSpawningTime);
-            timePrevious = 0;
-        }
+        if (timePrevious >= timeNext)
+            spawnUnit();
 	}
 
     override
     public bool IsActive() {
         return true;
+    }
+
+    void spawnUnit() {
+        if (currSpawn < maxSpawn) {
+            tendencyEvent.Invoke(type, true, new SpawnerParameter(spawning));
+            currSpawn++;
+        }
+        timeNext = Random.Range(minSpawningTime, maxSpawningTime);
+        timePrevious = 0;
     }
 }
